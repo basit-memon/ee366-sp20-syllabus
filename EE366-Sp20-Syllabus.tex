@@ -1,0 +1,463 @@
+\documentclass[a4paper]{article}
+\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serig
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+
+\usepackage{url, hyperref}
+\usepackage[table]{xcolor} 
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{longtable,array,multirow}
+\usepackage{tabulary}
+
+\topmargin=-2.0cm
+\oddsidemargin=-0.5cm
+\evensidemargin=-0.5cm
+\textwidth=17.3cm
+\textheight=25cm
+\parindent=0cm
+\parskip=0.2cm
+%\fontfamily{cmr}
+\title{Habib University\\EE366 - Introduction to Robotics (3)}
+\author{%EE101 - Introduction to Electrical and Computer Engineering (2+2) \\\\
+\textit{``Humans need not apply ...''}\\}
+\date{Spring 2020%
+\\ Class Location: W-234
+\\ Class meeting times: MWF 9:30-10:20 am
+}
+
+\newcounter{index}
+
+\begin{document}
+\maketitle
+
+%\noindent Instructor(s): Basit Memon \hfill Office Hours:insert hours (by appt., virtual, etc.)\\
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+	Instructors: &  \textbf{Basit Memon}\\
+				 & Office:  C-119\\
+				 & Email: \href{mailto:basit.memon@sse.habib.edu.pk}{ basit.memon@sse.habib.edu.pk} \\
+				 & Extension:  5244\\
+				 & Office Hours: Monday 11:00 am -- 12:00 pm\\
+				 & \qquad\qquad\qquad Wednesday 12:00 pm -- 1:00 pm\\\\				 
+				 
+	% Research Assistants: & \textbf{Aiman Najeeb}\\
+	% 			 & Office: \\
+	% 			 & Email: \href{}{} \\\\
+	Course LMS URL: & \url{https://bit.ly/2R4Aavo}\\
+	Course Prerequisites: & Linear Algebra \\
+	Content Area: & This course is an elective course for EE, CE, and CS majors. This is first course in the series of Robotics courses.
+\end{tabular}
+
+\section{Rationale}
+Robotics is a multi-disciplinary area involving ideas from mechanical engineering, electrical and computer engineering, and computer science. With the ever increasing processing power, increasing connectedness, developments in AI, robots will play an increasingly greater role in our society. Even today, robots are being deployed in the fields of agriculture, healthcare, service industry, transport, logistics, and manufacturing. Thus, courses in robotics should be offered at undergraduate level to keep our graduates at pace with the changing dynamics of industry landscape. \\  
+
+This course is a breadth-first course designed to be the first course in a series of robotics courses. The goal of the course is to acclimatize the students with the area of robotics and to get them started on building robots. This is accomplished by presenting foundational knowledge from the fields of mechanical engineering, electrical and computer engineering, and computer science that is pertinent to robotics. 
+
+\section{Course Aims and Outcomes}
+\subsection{Aims}
+Through the course activities, this course broadly targets the following objectives:
+\begin{itemize}
+	\item To introduce foundational knowledge from disparate areas related to robotics in an integrated manner;
+	\item To develop students' ability to integrate ideas and concepts from different areas, as knowledge from multiple areas comes together to create a robot;
+	\item To have students gain a deeper appreciation for field of robotics, its history, its various sub-domains, and diverse applications;
+	\item To have students become aware of current research and open competitions in the field of robotics;
+	\item To build students' confidence and prepare them for building robots independently.
+\end{itemize}
+
+\subsection{Specific Learning Outcomes}
+Specifically, by the end of this course, you (students) will be able to:\\
+
+\renewcommand{\arraystretch}{2}
+\begin{tabular}[]{|m{0.08\textwidth}|m{0.7\textwidth}|m{0.15\textwidth}|}
+\hline
+& \textbf{Outcomes} & \textbf{Learning Domain Level} \\
+\hline\hline
+CLO 1 & Apply forward and inverse kinematics to transform between joint angles and end-effector positions for serial robotic manipulators or simple robotic platforms; & COG-3 \\\hline
+CLO 2 & Describe and compare various robotic actuation and sensing mechanisms; & COG-2\\\hline
+CLO-3 & Apply appropriate operations on images to extract useful information; & COG-3\\\hline
+% CLO 3 & Describe the various sensors for robot perception and model uncertainty in these perceptive methods; & COG-3
+% %\newline PSY-3
+% \\\hline
+CLO 4 & Design simple PID controller for low-level motion control; & COG-3 \\\hline
+CLO 5 & Describe the various architectures for introducing autonomy in robots and design simple path planners; & COG-3\\\hline
+CLO 6 & Contrast the methods for robot localization and mapping. & COG-3\\\hline
+\end{tabular}
+%\begin{enumerate}	
+	
+	% \item Build simple systems that interact with, and attempt to effectively control an external environment;
+	%\item Convert between analog, digital, continuous-time, and discrete-time signals. 
+	%\item Make and justify trade-offs during engineering design
+	%\item Make mathematical models of real systems and use them for the analysis and design of systems (may be)
+	%\item Scope, generate, design, evaluate and realize ideas to solve real-life problem (may be)    
+    
+%\end{enumerate}
+\hspace{0pt} \\
+
+
+%\hspace{0pt} \\
+
+%\vspace*{15pt}
+\renewcommand{\arraystretch}{1.3}
+% \begin{tabular}[]{|m{0.14\textwidth}|m{0.14\textwidth}|m{0.14\textwidth}|m{0.14\textwidth}|m{0.14\textwidth}|m{0.14\textwidth}|m{0.14\textwidth}|}
+% \hline
+% \multicolumn{7}{|c|}{\textbf{CLOs mapped to Program Learning Outcomes (PLOs)}} \\\hline
+% \multirow{2}{*}{\textbf{PLOs}} & \multicolumn{6}{c|}{\textbf{Distribution of CLO weights for each PLO}}\\\cline{2-7}
+% & \textbf{CLO 1} & \textbf{CLO 2} & \textbf{CLO 3} & \textbf{CLO 4} & \textbf{CLO 5} & \textbf{CLO 6}\\\hline\hline
+% PLO 1 & $100\%$ & &  & &\\\hline
+% %PLO 2 & $30\%$ & &  & $10\%$ \\\hline
+% PLO 3 &  & &  & $100\%$ &\\\hline
+% PLO 4 &  & & $100\%$ &  &\\\hline
+% PLO 5 &  & $100\%$  &  & & \\\hline
+% PLO 6 & $10\%$ &   &  &  \\\hline
+% PLO 9 &  & &  &  & $100\%$ \\\hline
+% %PLO 12 & $10\%$ & $30\%$  & $15\%$ & $20\%$ \\\hline
+% \end{tabular}
+{\centering
+\begin{tabulary}{.65\textwidth}{|L|L|L|L|L|L|L|}
+\hline
+\multicolumn{7}{|c|}{\textbf{CLOs mapped to Program Learning Outcomes (PLOs)}} \\\hline
+\multirow{2}{*}{\textbf{PLOs}} & \multicolumn{6}{c|}{\textbf{Distribution of CLO weights for each PLO}}\\\cline{2-7}
+& \textbf{CLO 1} & \textbf{CLO 2} & \textbf{CLO 3} & \textbf{CLO 4} & \textbf{CLO 5} & \textbf{CLO 6}\\\hline\hline
+PLO 1 & $15\%$ & $15\%$ & $15\%$ & $15\%$ & $15\%$ & $15\%$\\\hline
+%PLO 2 & $30\%$ & &  & $10\%$ \\\hline
+% PLO 3 &  & &  & $100\%$ & &\\\hline
+% PLO 4 &  & & $100\%$ &  & & \\\hline
+% PLO 5 &  & $100\%$  &  & & &\\\hline
+% PLO 6 &  &   &  &   & $100\%$  & \\\hline
+% PLO 9 &  & &  &  &  & $100\%$ \\\hline
+%PLO 12 & $10\%$ & $30\%$  & $15\%$ & $20\%$ \\\hline
+\end{tabulary}
+
+\hspace{0pt} \\
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabulary}{\textwidth}{|R|J|C|}
+\hline
+& \textbf{Program Learning Outcomes (PLOs)} & \textbf{Level of Emphasis}\newline \textbf{(1:High; 2:Medium; 3:Low)} \\
+\hline\hline
+1. & Engineering Knowledge & 1\\\hline
+%2. & Problem Analysis & \\\hline
+% 3. & Design/ Development of Solutions & 3\\\hline
+% 4. & Investigation & 3\\\hline
+% 5. & Modern Tool Usage & 2\\\hline
+% 6. & The Engineer and Society & 3\\\hline
+%7. & Environment and Sustainability & \\\hline
+%8. & Ethics & \\\hline
+%9. & Individual and Team Work & 2\\\hline
+%10. & Communication & \\\hline
+%11. & Project Management & \\\hline
+%12. & Lifelong Learning & \\\hline
+\end{tabulary}
+}
+
+% \vspace*{10pt}
+% \renewcommand{\arraystretch}{1.3}
+% \begin{tabular}[]{|m{0.08\textwidth}|m{0.55\textwidth}|m{0.3\textwidth}|}
+% \hline
+% & \textbf{Program Learning Outcomes (PLOs)} & \textbf{Level of Emphasis}\newline \textbf{(1:High; 2:Medium; 3:Low)} \\
+% \hline\hline
+% 1. & Engineering Knowledge & 2\\\hline
+% 2. & Problem Analysis & \\\hline
+% 3. & Design/Development of Solutions & 3\\\hline
+% 4. & Investigation & 3\\\hline
+% 5. & Modern Tool Usage & 2\\\hline
+% 6. & The Engineer and Society & \\\hline
+% 7. & Environment and Sustainability & \\\hline
+% 8. & Ethics & \\\hline
+% 9. & Individual and Team Work & 2\\\hline
+% 10. & Communication & \\\hline
+% 11. & Project Management & \\\hline
+% 12. & Lifelong Learning & \\\hline
+% \end{tabular}
+
+
+\section{Format and Procedures}
+% This is a 4 credit hours course with 3 credits or three sessions of classroom teaching (50 minutes each) and 1 lab credit or one lab sessions (3 hours), every week. 
+
+% \textbf{Labs:} It is possible that you need to spend more than the allocated 3 hours to complete some of the labs. In such a case, you're welcome to come to the lab outside the allocated time slots, after discussing it with the lab RA.
+
+The format of the class will primarily be lecture based interspersed with activities. The class content will have a significant amount of math involved, and so if you need a refresher about any math topic you can let me know and we can work out an appropriate measure. The major learning of the course will be through the homework assignments. \\
+
+\textbf{Homework Assignments:} The homework assignments will include questions to be solved by hand as well as programming assignments. You're encouraged to work together on these homework assignments, but each student is required to write and submit their own work. As a rule, you can gather and discuss the homework and possible solutions, but then each student should go their own way and write their final response that is to be submitted on their own. This includes all code as well. You might get the feeling that you completely understand a problem during the group discussion, but when you sit down on your own to write it up is when you start to discover any issues with your understanding. I hope that you will utilize my office hours to discuss any issues you're facing with the course. \\
+
+\textbf{MATLAB:} Most of the course visualization and simulation will be carried out in MATLAB. As such, students are required to dust off their MATLAB programming skills. If you're facing difficulties with MATLAB, you can contact me and I'll try to provide you with additional resources. 
+
+
+
+\section{Course Requirements}
+
+\subsection*{Course readings:}
+\begin{itemize}
+\item \textbf{Required text:} There is no single text for the course. The texts that will be referenced for each area are listed below:\\
+
+	\textbf{Overview of Robotics and various developments:}
+	\begin{enumerate}[label=(\alph*)]
+		\item Matarić, Maja J., J. Maja, and Ronald C. Arkin. The robotics primer. MIT press, 2007. [P]
+		\item Bekey, George A. Autonomous robots: from biological inspiration to implementation and control. MIT press, 2005. [B] 
+		\item Siciliano, Bruno, and Oussama Khatib, eds. Springer handbook of robotics. Springer, 2016.
+		\item Bekey, George A., et al. Robotics : State of the Art and Future Challenges, Imperial College Press, 2008. (E-book accessible through library)
+	\end{enumerate}
+	\textbf{Mechanics, Vision, Control, Navigation}
+	\begin{enumerate}[label=(\alph*)]
+		\item Craig, John J. Introduction to robotics: mechanics and control, 3/E. Pearson Education India, 2009. [C] 
+		\item Corke, Peter. Robotics, vision and control: fundamental algorithms in MATLAB. Springer, 2017. (Available in library) [RVC] 
+		\item Kevin M.. Lynch, and Frank Chongwoo Park. Modern Robotics: Mechanics, Planning, and Control. Cambridge University Press, 2017. [MR] 
+		\item Spong, Mark W., Seth Hutchinson, and Mathukumalli Vidyasagar. Robot modeling and control. Vol. 3. New York: wiley, 2006.				
+		\item Siegwart R, Nourbakhsh IR, Scaramuzza D. Autonomous mobile robots. A Bradford Book. 2011. (E-book accessible through library)
+	\end{enumerate}
+	\textbf{Planning and Architectures}
+	\begin{enumerate}[label=(\alph*)]
+		\item Murphy, Robin R. Introduction to AI robotics. MIT press, 2019.
+		\item Arkin, Ronald C., and Ronald C. Arkin. Behavior-based robotics. MIT press, 1998.
+		\item Choset, Howie M., et al. Principles of robot motion: theory, algorithms, and implementation. MIT press, 2005. (E-book accessible through library)
+	\end{enumerate}
+% \item \textbf{Reference texts:}
+% 	\begin{enumerate}[label=(\alph*)]
+% 		\item Matarić, Maja J., J. Maja, and Ronald C. Arkin. The robotics primer. MIT press, 2007.
+% 		\item Craig, John J. Introduction to robotics: mechanics and control, 3/E. Pearson Education India, 2009.
+% 		\item Bekey, George A. Autonomous robots: from biological inspiration to implementation and control. MIT press, 2005.
+% 		\item Bekey, George A. Autonomous robots: from biological inspiration to implementation and control. MIT press, 2005.
+% 		\item Corke, Peter. Robotics, vision and control: fundamental algorithms in MATLAB® second, completely revised. Vol. 118. Springer, 2017.
+% 		\item Arkin, Ronald C., and Ronald C. Arkin. Behavior-based robotics. MIT press, 1998.
+% 	\end{enumerate}
+\end{itemize}
+
+\section{Grading Procedures}
+
+
+The final grade of the student will be based on the assessment of the following products, according to their mentioned contribution to the final grade:
+\begin{itemize}
+	\item Homeworks (50\%)
+	\item Mid-term Exam (20\%) 	
+	\item Final Exam (30\%)
+\end{itemize}
+
+The following grading scale will be utilized:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\multicolumn{3}{c}{GRADING SCALE}\\
+		\hline 
+		LETTER GRADE & GPA POINTS & PERCENTAGE RANGE \\
+		\hline
+		A+ & 4.00 & [95,100] \\
+		\hline
+		A & 4.00 & [90,95) \\
+		\hline
+		A- & 3.67 & [85,90) \\
+		\hline
+		B+ & 3.33 & [80,85) \\
+		\hline
+		B & 3.00 & [75,80) \\
+		\hline
+		B- & 2.67 & [70,75) \\
+		\hline
+		C+ & 2.33 & [67,70) \\
+		\hline
+		C & 2.00 & [63,67) \\
+		\hline
+		C- & 1.67 & [60,63) \\
+		\hline
+		F & 0.00 & [0,60) \\
+		\hline
+	\end{tabular}
+\end{table}
+
+% \vspace*{10pt}
+% \renewcommand{\arraystretch}{1.3}
+% \begin{tabular}[]{|m{0.33\textwidth}|m{0.1\textwidth}|m{0.1\textwidth}|m{0.1\textwidth}|m{0.1\textwidth}|m{0.1\textwidth}|}
+% \hline
+% \multicolumn{6}{|c|}{\textbf{Course Assessment Mapping over CLOs}} \\\hline
+% \textbf{Assessment Item} & \textbf{CLO 1} & \textbf{CLO 2} & \textbf{CLO 3} & \textbf{CLO 4} & \textbf{CLO 5}\\\hline\hline
+% Quizzes & $50\%$ & &  &  &\\\hline
+% Homeworks & $50\%$ & &  & & \\\hline
+% Resistors worksheet & & $30\%$  &  & & \\\hline
+% Circuits worksheet & & $30\%$  &  &  &\\\hline
+% LED Flashlight project Parts 1\&2 &  & $40\%$ &  &  &\\\hline
+% LED Flashlight project Parts 3\&4 &  &  & $30\%$ &  &\\\hline
+% LED Flashlight project Parts 5\&6 &  &  &  & $60\%$ &\\\hline
+% Biosensing project Parts 1-3\&5 &  &  & $50\%$ &  &\\\hline
+% Biosensing project Part 4 &  &  &  & $40\%$ &\\\hline
+% Playing with Raspberry Pi &  &  & $20\%$ &  &\\\hline
+% Independent Study &  &  &  & &$100\%$ \\\hline
+% \end{tabular}
+
+\section{Attendance Policy}
+
+% This is HU's mandatory minimum policy.
+Habib University requires that all 
+students
+must maintain at least 85\% attendance for 
+each class in which they are registered. Non-compliance with minimum attendance 
+requirements  will  result  in  automatic  failure  of  the  course  and  may  require  the 
+student to
+repeat the course when next offered. This policy is at a minimum. It is the 
+responsibility  of  the  student  to  keep  track  of  their  own  attendance  and  speak  with 
+their faculty member or the Office of the Registrar for any clarification. 
+
+%In this course, a student can miss up to \textbf{} classes, where counting begins from the first day of classes.
+
+\section{Accommodations for students with disabilities}
+
+In compliance with the Habib University policy and equal access laws, I am available to discuss appropriate academic accommodations that may be required for student with disabilities. Requests for academic accommodations are to be made during the first two weeks of the semester, except for unusual circumstances, so arrangements can be made. Students are encouraged to register with the Office of Academic Performance to verify their eligibility for appropriate accommodations.
+
+\section{Inclusivity Statement}
+We understand that our members represent a rich variety of backgrounds and perspectives. Habib University is committed to providing an atmosphere for learning that respects diversity. While working together to build this community we ask all members to:
+\begin{itemize}
+	\item share their unique experiences, values and beliefs
+	\item be open to the views of others 
+	\item honor the uniqueness of their colleagues
+	\item appreciate the opportunity that we have to learn from each other in this community
+	\item value each other's opinions and communicate in a respectful manner
+	\item keep confidential discussions that the community has of a personal (or professional) nature 
+	\item use this opportunity together to discuss ways in which we can create an inclusive environment in this course and across the Habib community 
+\end{itemize}
+
+\section{Office hours}
+Office hours have been scheduled, circulated, and posted.  During these hours the course instructor will be available to answer questions or provide additional help. Every student enrolled in this course must meet individually with the course instructor during course office hours at least once during the semester. The first meeting should happen within the first five weeks of the semester but must occur before midterms. Any student who does not meet with the instructor may face a grade reduction or other penalties at the discretion of the instructor and will have an academic hold placed by the Registrar's Office. 
+
+\section{Academic Integrity}
+
+Each student in this course is expected to abide by the Habib University Student Honor Code of Academic Integrity.  Any work submitted by a student in this course for academic credit will be the student's own work. There is zero tolerance for plagiarism. Every case will be reported to the conduct office and you'll get a zero on that particular test or assignment. 
+
+Scholastic dishonesty shall be considered a serious violation of these rules and regulations and is subject to strict disciplinary action as prescribed by Habib University regulations and policies. Scholastic dishonesty includes, but is not limited to, cheating on exams, plagiarism on assignments, and collusion. 
+
+\noindent{\bf PLAGIARISM}: Plagiarism is the act of taking the work created by another person or entity and presenting it as one's own for the purpose of personal gain or of obtaining academic credit. As per University policy, plagiarism includes the submission of or incorporation of the work of others without acknowledging its provenance or giving due credit according to established academic practices. This includes the submission of material that has been appropriated, bought, received as a gift, downloaded, or obtained by any other means. Students must not, unless they have been granted permission from all faculty members concerned, submit the same assignment or project for academic credit for different courses. 
+
+\noindent{\bf CHEATING}: The term cheating shall refer to the use of or obtaining of unauthorized information in order to obtain personal benefit or academic credit. 
+
+\noindent{\bf COLLUSION}: Collusion is the act of providing unauthorized assistance to one or more person or of not taking the appropriate precautions against doing so. 
+All violations of academic integrity will also be immediately reported to the concerned department.  
+
+You are encouraged to study together and to discuss information and concepts covered in lecture and the sections with other students. You can give "consulting" help to or receive "consulting" help from such students. However, this permissible cooperation should never involve one student having possession of a copy of all or part of work done by someone else, in the form of an e-mail, an e-mail attachment file, a diskette, or a hard copy. 
+
+Should copying occur, the student who copied work from another student and the student who gave material to be copied will both be in violation of the Student Code of Conduct. 
+
+During examinations, you must do your own work. Talking or discussion is not permitted during the examinations, nor may you compare papers, copy from others, or collaborate in any way. Any collaborative behavior during the examinations will result in failure of the exam, and may lead to failure of the course and University disciplinary action.
+
+Penalty for violation of this Code can also be extended to include failure of the course and University disciplinary action. 
+
+
+\section{Tentative Course schedule}
+{\it May change to accommodate student needs}\\
+
+\noindent\begin{longtable}{|p{.15\textwidth}|p{.5\textwidth}|p{.28\textwidth}|}
+\hline
+Class dates & Topics to be discussed & Remarks\\\hline
+Week-1 \newline January 13-17 & 
+\begin{enumerate}[nolistsep]
+	\item Introduction
+	\item History and Components of a robot
+	\item Arms and actuators
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} 
+& \newline P 1-2 \newline P 3; B 1\\\hline
+Week-2 \newline January 20-24& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	
+	\item Spatial Transformations
+	\item Forward Kinematics
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} 
+& \newline \\\hline
+Week-3 \newline January 27-31 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}	 
+	 \item Inverse Kinematics
+	\setcounter{index}{\value{enumi}}  
+\end{enumerate} & \newline\\\hline
+
+Week-4 \newline February 3-7& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}	
+	\item Trajectory Planning
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} 
+& \newline Kashmir Day: Feb 5\\\hline
+
+Week-5 \newline February 10-14 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Dynamics
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline Drop Date: February 14\\\hline
+
+Week-6 \newline February 17-21 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}	
+	\item Robot Vision
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline \\\hline
+
+Week-7 \newline February 24-28 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Robot Vision
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline Mid-term Exams\\\hline
+
+Week-8 \newline March 2-6& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Robot Vision
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline Mid-term Exams\\\hline
+
+Week-9 \newline March 9-13 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}		
+	\item Feedback Control
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+Week-10 \newline March 16-20& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Feedback Control
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+\newline March 23-26 & \newline Spring Break & \newline Last date to withdraw: March 27 \\\hline
+
+Week-11 \newline March 30--April 3& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}	
+	\item Locomotion and Perception
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+Week-12 \newline April 6-10 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}		
+	\item Control Architectures
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline \\\hline
+
+Week-13 \newline April 13-17 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Localization
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+Week-14 \newline April 20-24 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}		
+	\item Planning and Navigation
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+Week-15 \newline April 27--May 1& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}		
+	\item 
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline Last day of classes: April 30  \\\hline
+\end{longtable}
+         
+
+
+\end{document}

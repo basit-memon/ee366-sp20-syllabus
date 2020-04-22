@@ -73,15 +73,19 @@ Specifically, by the end of this course, you (students) will be able to:\\
 \hline
 & \textbf{Outcomes} & \textbf{Learning Domain Level} \\
 \hline\hline
-CLO 1 & Apply forward and inverse kinematics to transform between joint angles and end-effector positions for serial robotic manipulators or simple robotic platforms; & COG-3 \\\hline
-CLO 2 & Describe and compare various robotic actuation and sensing mechanisms; & COG-2\\\hline
-CLO-3 & Apply appropriate operations on images to extract useful information; & COG-3\\\hline
+CLO 1 & Use different representations of orientation and apply homogeneous transformations to capture translations and rotations of object in 3D space; 
+ & COG-3 \\\hline
+CLO 2 & Analyze a serial manipulator's kinematic singularities and apply forward and inverse kinematics to transform between joint and end-effector positions and velocities; %or simple robotic platforms;
+& COG-4\\\hline
+CLO 3 & Apply appropriate operations on an image to extract position and orientation of objects in image; & COG-3\\\hline
 % CLO 3 & Describe the various sensors for robot perception and model uncertainty in these perceptive methods; & COG-3
 % %\newline PSY-3
 % \\\hline
-CLO 4 & Design simple PID controller for low-level motion control; & COG-3 \\\hline
-CLO 5 & Describe the various architectures for introducing autonomy in robots and design simple path planners; & COG-3\\\hline
-CLO 6 & Contrast the methods for robot localization and mapping. & COG-3\\\hline
+CLO 4 & Apply a path planning scheme to generate waypoints, generate smooth trajectories between waypoints, and design simple motion controllers for execution of those trajectories by the actuators; & COG-3 \\\hline
+CLO 5 & Describe and compare various robotic actuation and sensing mechanisms, and architectures for introducing autonomy in robots; & COG-2\\\hline
+CLO 6 & Explain the need and different methods for robot locomotion, localization and mapping. & COG-2\\\hline
+
+
 \end{tabular}
 %\begin{enumerate}	
 	
@@ -119,8 +123,8 @@ CLO 6 & Contrast the methods for robot localization and mapping. & COG-3\\\hline
 \multicolumn{7}{|c|}{\textbf{CLOs mapped to Program Learning Outcomes (PLOs)}} \\\hline
 \multirow{2}{*}{\textbf{PLOs}} & \multicolumn{6}{c|}{\textbf{Distribution of CLO weights for each PLO}}\\\cline{2-7}
 & \textbf{CLO 1} & \textbf{CLO 2} & \textbf{CLO 3} & \textbf{CLO 4} & \textbf{CLO 5} & \textbf{CLO 6}\\\hline\hline
-PLO 1 & $15\%$ & $15\%$ & $15\%$ & $15\%$ & $15\%$ & $15\%$\\\hline
-%PLO 2 & $30\%$ & &  & $10\%$ \\\hline
+PLO 1 &  &  & $30\%$ & $30\%$ & $20\%$ & $20\%$\\\hline
+PLO 2 & $30\%$ & $70\%$ &  & & & \\\hline
 % PLO 3 &  & &  & $100\%$ & &\\\hline
 % PLO 4 &  & & $100\%$ &  & & \\\hline
 % PLO 5 &  & $100\%$  &  & & &\\\hline
@@ -137,7 +141,7 @@ PLO 1 & $15\%$ & $15\%$ & $15\%$ & $15\%$ & $15\%$ & $15\%$\\\hline
 & \textbf{Program Learning Outcomes (PLOs)} & \textbf{Level of Emphasis}\newline \textbf{(1:High; 2:Medium; 3:Low)} \\
 \hline\hline
 1. & Engineering Knowledge & 1\\\hline
-%2. & Problem Analysis & \\\hline
+2. & Problem Analysis & 2 \\\hline
 % 3. & Design/ Development of Solutions & 3\\\hline
 % 4. & Investigation & 3\\\hline
 % 5. & Modern Tool Usage & 2\\\hline
@@ -458,24 +462,41 @@ Week-8 \newline March 17-20&
 \begin{enumerate}[nolistsep]
 	\setcounter{enumi}{\value{index}}
 	\item Feedback Control
+	
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+Week-13 \newline June 1-5 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}			
+	\item Feedback Control
+	\item Control Architectures	
 	\item Control Architectures	
 	\setcounter{index}{\value{enumi}}
 \end{enumerate}& \newline \\\hline
 
-Week-14 \newline April 20-24 & 
+Week-14 \newline June 8-12& 
 \begin{enumerate}[nolistsep]
-	\setcounter{enumi}{\value{index}}		
-	\item Planning and Navigation
+	\setcounter{enumi}{\value{index}}
+	\item Control Architectures		
+	\item Motion Planning
 	\setcounter{index}{\value{enumi}}
-\end{enumerate}& \newline \\\hline
+\end{enumerate}& \newline   \\\hline
 
-Week-15 \newline April 27--May 1& 
+Week-15 \newline June 15-19& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}			
+	\item Motion Planning
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline   \\\hline
+
+Week-16 \newline June 22-26& 
 \begin{enumerate}[nolistsep]
 	\setcounter{enumi}{\value{index}}		
-	\item Locomotion and Perception		
+	\item Perception		
 	\item Localization
 	\setcounter{index}{\value{enumi}}
-\end{enumerate}& \newline Last day of classes: April 30  \\\hline
+\end{enumerate}& \newline   \\\hline
 \end{longtable}
          
 

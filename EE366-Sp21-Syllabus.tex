@@ -1,0 +1,494 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serig
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+
+\usepackage{url, hyperref}
+\usepackage[table]{xcolor} 
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{longtable,array,multirow}
+\usepackage{tabulary}
+\usepackage{amsmath,mathtools}
+
+\topmargin=-2.0cm
+\oddsidemargin=-0.5cm
+\evensidemargin=-0.5cm
+\textwidth=17.3cm
+\textheight=25cm
+\parindent=0cm
+\parskip=0.3cm
+%\fontfamily{cmr}
+\title{Habib University}
+\author{EE366 -- Introduction to Robotics (3+0)}
+\date{Spring 2021}
+
+
+
+\newcounter{index}
+
+\begin{document}
+\maketitle
+\textit{"At bottom, robotics is about us. It is the discipline of emulating our lives, of wondering how we work. Still, as all engineers know, you never really understand something until you have built it; and if you can build it and it works as designed, you can be confident that you know something basic." -- Rod Grupen}\\
+
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+	Class Location: & W-242\\
+	Class Meeting Times: & MWF 2:30 -- 3:20 pm\\\\
+	Instructor:	 & \textbf{Basit Memon}\\
+				 & Office:  C-119\\
+				 & Email: \href{mailto:basit.memon@sse.habib.edu.pk}{ basit.memon@sse.habib.edu.pk} \\
+				 & Extension:  5244\\
+				 & Office Hours: \\\\
+	Course LMS URL: & \url{https://hulms.instructure.com/courses/1248}\\
+	Course Prerequisites: & Required: MATH 205 -- Linear Algebra \\	
+						& Recommended: MATH 201 -- Engineering Math; EE 354/MATH 301 -- Probability and Statistics\\\\
+
+	%Course Corequisites: & EE 366 \\	
+	Content Area: & This satisfies elective requirement for EE and CE majors. It is open to CS majors as well.\\\\
+	Hardware Prerequisites: & To engage with the course material, you'll require access to a computer, capable of running the below mentioned software, and an Internet connection. A working camera is not required, but is strongly encouraged.\\\\
+	Software Prerequisites: & An Internet browser, Zoom, PDF reader, document editors, LaTeX, MATLAB, Coppelia Sim. \\\\
+	Campus Safety Policy: & Please read the campus safety policy and protocols for the sessions that will be held in-person.
+\end{tabular}
+
+\section{Rationale}
+Robotics is a multi-disciplinary area involving ideas from mechanical engineering, electrical and computer engineering, and computer science. With ever increasing processing power, increasing connectedness, developments in AI, robots will play an increasingly greater role in our society. At present, robots are being deployed in the fields of agriculture, healthcare, service industry, transport, logistics, and manufacturing. Thus, courses in robotics should be offered at undergraduate level to keep our graduates at pace with the changing dynamics of technology landscape. 
+
+This course is a breadth-first course designed to be the first in a series of robotics courses. The goal of this course is to acclimatize the students with the area of robotics and to get them started with building robots. This is accomplished by presenting foundational knowledge from the fields of mechanical engineering, electrical and computer engineering, and computer science that is pertinent to domain of robotics. 
+
+\section{Course Aims and Outcomes}
+\subsection{Aims}
+Through the course activities, this course broadly targets the following objectives:
+\begin{itemize}
+	\item To introduce foundational knowledge from disparate areas related to robotics in an integrated manner;
+	\item To hone students' ability to integrate ideas and concepts from different areas, as knowledge from multiple areas comes together to create a robot;
+	\item To have students gain a deeper appreciation for field of robotics, its history, its various sub-domains, and diverse applications;
+	\item To have students become aware of current research and open competitions in the field of robotics;
+	\item To build students' confidence and prepare them for building robots independently.
+\end{itemize}
+
+\subsection{Program Learning Outcomes (PLOs)}
+Program Learning Outcomes, are statements that describe what students will know and be able to do at the time of graduation. Based on the high-level objectives, the course facilitates and contributes to the following program learning outcomes:
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabulary}{\textwidth}{|R|J|C|}
+\hline
+& \textbf{Program Learning Outcomes (PLOs)} & \textbf{Level of Emphasis}\newline \textbf{(1:High; 2:Medium; 3:Low)} \\
+\hline\hline
+1. & Engineering Knowledge & High\\\hline
+2. & Problem Analysis & Medium\\\hline
+% 3. & Design/ Development of Solutions & 3\\\hline
+% 4. & Investigation & 3\\\hline
+%5. & Modern Tool Usage & High\\\hline
+% 6. & The Engineer and Society & 3\\\hline
+%7. & Environment and Sustainability & \\\hline
+%8. & Ethics & Low\\\hline
+%9. & Individual and Team Work & 2\\\hline
+%10. & Communication & Medium\\\hline
+%11. & Project Management & \\\hline
+%12. & Lifelong Learning & Medium\\\hline
+\end{tabulary}
+
+\begin{itemize}
+	\item \textbf{PLO1-Engineering Knowledge:} an ability to apply knowledge of mathematics, science, engineering fundamentals and an engineering specialization to the solution of complex engineering problems;
+	\item \textbf{PLO2-Problem Analysis:} an ability to identify, formulate, and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences and engineering.
+	% \item \textbf{PLO8-Ethics:} the ability to apply ethical principles and commit to professional ethics, responsibilities, and norms of engineering practice;
+	% \item \textbf{PLO10-Communication:} an ability to communicate effectively, orally as well as in writing, on complex engineering activities with the engineering community and with society at large;
+	% \item \textbf{PLO12-Lifelong Learning:} an ability to recognize importance of, and pursue lifelong learning in the broader context of innovation and technological developments.
+	%\item \textbf{PLO5-Modern Tool Usage:} an ability to create, select and apply appropriate techniques, resources, and modern engineering tools, including prediction and modeling, to complex engineering activities with an understanding of the limitations
+\end{itemize}
+
+
+\subsection{Specific Learning Outcomes (CLOs)}
+Specifically, by the end of this course, you (students) will be able to:
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}[]{|m{0.08\textwidth}|m{0.7\textwidth}|m{0.15\textwidth}|}
+\hline
+& \textbf{Outcomes} & \textbf{Learning Domain Level} \\
+\hline\hline
+CLO 1 & Use implicit and explicit representation of configuration and spatial velocities of a robot to mathematically describe its motion in 3D space; 
+ & COG-3 \\\hline
+CLO 2 & Analyze a serial manipulator's kinematic singularities and apply forward and inverse kinematics to transform between joint and end-effector positions and velocities; %or simple robotic platforms;
+& COG-4\\\hline
+CLO 3 & Apply appropriate operations on an image to extract position and orientation of objects in image, which can later be utilized for vision-based control; & COG-3\\\hline
+% CLO 3 & Describe the various sensors for robot perception and model uncertainty in these perceptive methods; & COG-3
+% %\newline PSY-3
+% \\\hline
+CLO 4 & Apply an appropriate  path planning scheme to generate waypoints in presence of obstacles, generate smooth trajectories between waypoints, and design real-time feedback controllers for tracking planned motion; & COG-3 \\\hline
+CLO 5 & Describe and compare various robotic actuation and sensing mechanisms, and architectures for introducing autonomy in robots; & COG-2\\\hline
+CLO 6 & Explain the need and different methods for robot locomotion, localization and mapping. & COG-2\\\hline
+\end{tabular}
+
+%\hspace{0pt} \\
+
+\renewcommand{\arraystretch}{1.3}
+\begin{center}
+
+\begin{tabulary}{.65\textwidth}{|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|}
+\hline
+\multicolumn{7}{|c|}{\textbf{CLOs mapped to Program Learning Outcomes (PLOs)}} \\\hline
+\multirow{2}{*}{\textbf{PLOs}} & \multicolumn{6}{c|}{\textbf{Distribution of CLO weights for each PLO}}\\\cline{2-7}
+& \textbf{CLO 1} & \textbf{CLO 2} & \textbf{CLO 3}& \textbf{CLO 4} & \textbf{CLO 5} & \textbf{CLO 6}\\\hline\hline
+PLO  1 & $50\%$ & & & & $25\%$ & $25\%$  \\\hline
+PLO  2 & & $40\%$ & $30\%$ & $30\%$ & &\\\hline
+\end{tabulary}
+\end{center}
+%\hspace{0pt} \\
+
+
+\section{Format and Procedures}
+\textbf{Medium of Instruction:} This is a 3 credit hours course, requiring three sessions of classroom teaching (50 minutes each), every week. For the most part, the sessions will be synchronous and conducted either on Zoom or in-person if we get the chance. Since robotics deals with motion in 3D space, in-person sessions are convenient for such discussions. 
+
+There are great online resources available for robotics. Students are encouraged to access them and share with their peers and instructor. The instructor will share some of these resources and students may be asked to watch these videos before the scheduled live session. Access to all materials and recordings will be made available over LMS.
+
+Owing to the nature of the subject, the course content will be spread over disparate domains and will be covered at a fast pace. This is in contrast to a typical science or engineering course that gradually builds on ideas and delves deeper on the same topic, and it could be overwhelming for students. Students are encouraged to ask for further resources from the instructor and actively increase their knowledge in every constituent area of the course. 
+
+In addition to the scheduled class sessions, students are expected to devote 6-9 hours each week to be successful in this course. 
+
+\textbf{Recording Policy:} As per HU's teaching policy during COVID-19, all sessions will be recorded and uploaded on our Video Management System (Panopto). Links to the recordings will be part of relevant course modules on LMS.
+
+\textbf{Engagement and Participation Rules:} 
+\begin{itemize}	
+	\item During the course, you can expect to have the instructor present materials, watch videos, participate in activities individually and in groups, participate in discussions, obsess over problems, simulate, program, research, and solve problems analytically. 
+	\item Keeping your camera on makes the session more engaging, but you're not required to keep it on. However, you will have to interact during the sessions using your microphones.
+	\item The instructor will frequently assign self-assessment concept quizzes, which will have unlimited attempts within a specified period. These quizzes will serve as formative assessments and help students solidify the foundational concepts of the course. Students are expected to attempt these quizzes diligently and punctually.
+	\item Engagement with the course will be measured through a metric called the "Student Engagement Level (SEL)", the details of which can be found in section 5.	
+	\item Since the course will involve extensive interactions online, the following netiquettes are applicable:
+	\begin{itemize}
+	 	\item Remember that you're interacting with a human
+	 	\item Adhere to same standards of behavior online that you follow in real life
+	 	\item Respect other people's time and bandwidth
+	 	\item You can take your time writing and make yourself look good
+	 	\item Share expert knowledge, but be polite
+	 	\item Respect other people's privacy
+	 	\item Be forgiving of other people's mistakes
+	 \end{itemize} 
+\end{itemize}
+
+
+
+\section{Course Requirements}
+
+\subsection*{Course Structure:}
+The overall course can be divided into various modules, each dealing with a specific area of robotics. There is a common underlying example problem running through all these modules, which students will be able to complete by the end of the course, i.e. :
+\begin{itemize}
+	\item Use a simple arm to perform a pick and place operation autonomously, with the help of a ceiling mounted camera. The objects to be picked will have a regular shape, perhaps of different colors. 
+	\item Make a mobile robot autonomously map and navigate a maze (towards the end, if time permits). 
+\end{itemize}
+
+\subsection*{Course readings:}
+\begin{itemize}
+\item \textbf{Required text:} There is no single text for the course. The following books cover majority of the course content and instructor will provide reference to appropriate sections of books in the weekly schedule. 
+\begin{enumerate}[label=(\alph*)]
+	\item Spong, Mark W., Seth Hutchinson, and Mathukumalli Vidyasagar. Robot modeling and control. Vol. 3. New York: wiley, 2006. [RMC]	
+	\item Corke, Peter. Robotics, vision and control: fundamental algorithms in MATLAB. Springer, 2017. (Available in library) [RVC] 
+\end{enumerate}
+
+The texts that will be referenced for each area are listed below:\\
+
+\textbf{Overview of Robotics and various developments:}
+\begin{enumerate}[label=(\alph*)]
+	\item Mataric, Maja J., J. Maja, and Ronald C. Arkin. The robotics primer. MIT press, 2007. [P]
+	\item Bekey, George A. Autonomous robots: from biological inspiration to implementation and control. MIT press, 2005. [B] 
+	\item Siciliano, Bruno, and Oussama Khatib, eds. Springer handbook of robotics. Springer, 2016. [H]
+	\item Bekey, George A., et al. Robotics : State of the Art and Future Challenges, Imperial College Press, 2008. (E-book accessible through library)
+\end{enumerate}
+\textbf{Breadth books covering Mechanics, Vision, Control, Navigation}
+\begin{enumerate}[label=(\alph*)]
+	\item Spong, Mark W., Seth Hutchinson, and Mathukumalli Vidyasagar. Robot modeling and control. Vol. 3. New York: wiley, 2006. [RMC]	
+	\item Siciliano, Bruno, Lorenzo Sciavicco, Luigi Villani, and Giuseppe Oriolo. Robotics: modelling, planning and control. Springer Science \& Business Media, 2010.
+	\item Corke, Peter. Robotics, vision and control: fundamental algorithms in MATLAB. Springer, 2017. (Available in library) [RVC] 
+	\item Kevin M.. Lynch, and Frank Chongwoo Park. Modern Robotics: Mechanics, Planning, and Control. Cambridge University Press, 2017. [MR] 	
+	\item Craig, John J. Introduction to robotics: mechanics and control, 3/E. Pearson Education India, 2009. [C] 
+	\item Niku, Saeed B. Introduction to robotics: analysis, systems, applications. Vol. 7. New Jersey: Prentice hall, 2001. [RAS]			
+	\item Siegwart R, Nourbakhsh IR, Scaramuzza D. Autonomous mobile robots. A Bradford Book. 2011. (E-book accessible through library)
+\end{enumerate}
+\textbf{Computer vision}
+\begin{enumerate}[label=(\alph*)]
+	\item Gonzalez, Rafael C., Richard Eugene Woods, and Steven L. Eddins. Digital image processing using MATLAB. Pearson Education India, 2004.
+	\item Forsyth, David A., and Jean Ponce. Computer vision: a modern approach. Prentice Hall Professional Technical Reference, 2002. [CVM]
+		\item Szeliski, Richard. Computer vision: algorithms and applications. Springer Science \& Business Media, 2010. [CVA]
+	\item Faugeras, Olivier. Three-dimensional computer vision: a geometric viewpoint. MIT press, 1993.
+	\item Hartley, Richard, and Andrew Zisserman. Multiple view geometry in computer vision. Cambridge university press, 2003.
+\end{enumerate}
+\textbf{Planning and Architectures}
+\begin{enumerate}[label=(\alph*)]
+	\item Murphy, Robin R. Introduction to AI robotics. MIT press, 2019.
+	\item Arkin, Ronald C., and Ronald C. Arkin. Behavior-based robotics. MIT press, 1998.
+	\item Choset, Howie M., et al. Principles of robot motion: theory, algorithms, and implementation. MIT press, 2005. (E-book accessible through library)
+	\item LaValle, Steven M. Planning algorithms. Cambridge university press, 2006. (\url{http://lavalle.pl/planning/})
+\end{enumerate}
+
+\end{itemize}
+
+
+\section{Assessments, SEL, and Grading Procedures}
+\subsection{Assessments and SEL}
+\subsubsection{Assessments}
+The contribution of each assessment instrument to the final grade is:
+\begin{center}
+\begin{tabulary}{.5\textwidth}{|J|J|}
+\hline
+Homework Assignments & $60\%$\\\hline
+Mid-term Exam & $15\%$\\\hline
+Final Exam & $20\%$\\\hline
+Concept Quizzes and other activities & $10\%$\\\hline
+\end{tabulary}
+\end{center}
+All assessments, except for the concept quizzes, will be heavily MATLAB-based. As such, all assessments will be online and require a longer duration than a traditional 3 hours exam. The concept quizzes will be mostly multiple choice questions and students will have unlimited attempts within a 1-2 weeks period. 
+
+A submission late by $x$ hours will receive a deduction of $\left\lfloor\frac{x}{168}\right\rfloor\times 10\%$ from the obtained score. 
+
+\subsubsection{SEL}
+The student engagement level (SEL) will be determined every two weeks based on each student's attendance in synchronous sessions and timely submission of assessments. The SEL scores will be shared with the students every two weeks as well. This policy may be modified in view of upcoming university SEL policy. 
+
+
+\subsection{Mapping of assessments to CLOs}
+\subsection{Grading Scale}
+The following grading scale will be utilized:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\multicolumn{3}{c}{GRADING SCALE}\\
+		\hline 
+		LETTER GRADE & GPA POINTS & PERCENTAGE RANGE \\
+		\hline
+		A+ & 4.00 & [95,100] \\
+		\hline
+		A & 4.00 & [90,95) \\
+		\hline
+		A- & 3.67 & [85,90) \\
+		\hline
+		B+ & 3.33 & [80,85) \\
+		\hline
+		B & 3.00 & [75,80) \\
+		\hline
+		B- & 2.67 & [70,75) \\
+		\hline
+		C+ & 2.33 & [67,70) \\
+		\hline
+		C & 2.00 & [63,67) \\
+		\hline
+		C- & 1.67 & [60,63) \\
+		\hline
+		F & 0.00 & [0,60) \\
+		\hline
+	\end{tabular}
+\end{table}
+
+% \renewcommand{\arraystretch}{1.3}
+% \begin{center}
+% \begin{tabular}[]{|m{0.33\textwidth}|m{0.1\textwidth}|m{0.1\textwidth}|m{0.1\textwidth}|}
+% \hline
+% \multicolumn{4}{|c|}{\textbf{Course Assessment Mapping over CLOs}} \\\hline
+% \textbf{Assessment Item} & \textbf{CLO 1} & \textbf{CLO 2} & \textbf{CLO 3} \\\hline\hline
+% Response Report Content & $60\%$ & &  \\\hline
+% Response Report Writing & & & $50\%$\\\hline
+% Ethics Essay & & $70\%$  &   \\\hline
+% Presentation Topic Research & $40\%$ & &\\\hline
+% Presentation &  &  & $50\%$\\\hline
+% Class Participation &  & $30\%$ & \\\hline
+% \end{tabular}
+% \end{center}
+
+
+\section{Attendance Policy}
+Students should preferably attend all synchronous sessions or watch the recording, but they will not be penalized for attendance. However, student engagement will be monitored throughout the course, converted to an SEL score, and students who obtain unsatisfactory scores will be reported to OAP. 
+
+
+\section{Accommodations for students with disabilities}
+In compliance with the Habib University policy and equal access laws, I am available to discuss appropriate academic accommodations that may be required for student with disabilities. Requests for academic accommodations are to be made during the first two weeks of the semester, except for unusual circumstances, so arrangements can be made. Students are encouraged to register with the Office of Academic Performance to verify their eligibility for appropriate accommodations.
+
+\section{Inclusivity Statement}
+We understand that our members represent a rich variety of backgrounds and perspectives. Habib University is committed to providing an atmosphere for learning that respects diversity. While working together to build this community we ask all members to:
+\begin{itemize}
+	\item share their unique experiences, values and beliefs
+	\item be open to the views of others 
+	\item honor the uniqueness of their colleagues
+	\item appreciate the opportunity that we have to learn from each other in this community
+	\item value each other's opinions and communicate in a respectful manner
+	\item keep confidential discussions that the community has of a personal (or professional) nature 
+	\item use this opportunity together to discuss ways in which we can create an inclusive environment in this course and across the Habib community 
+\end{itemize}
+
+\section{Office hours}
+Office hours have been scheduled, circulated, and posted on LMS. During these hours the course instructor will be available to answer questions or provide additional help. Every student enrolled in this course must meet individually with the course instructor during course office hours at least once during the semester. The first meeting should happen within the first five weeks of the semester but must occur before midterms. Any student who does not meet with the instructor may face a grade reduction or other penalties at the discretion of the instructor and will have an academic hold placed by the Registrar's Office. 
+
+\section{Academic Integrity}
+
+Each student in this course is expected to abide by the Habib University Student Honor Code of Academic Integrity.  Any work submitted by a student in this course for academic credit will be the student's own work. Since this course's assessments involve a significant code component, students are required to write their own code. There is zero tolerance for plagiarism. Every case will be reported to the conduct office and all involved parties will get a zero on that particular test or assignment. 
+
+Scholastic dishonesty shall be considered a serious violation of these rules and regulations and is subject to strict disciplinary action as prescribed by Habib University regulations and policies. Scholastic dishonesty includes, but is not limited to, cheating on exams, plagiarism on assignments, and collusion. 
+
+\noindent{\bf PLAGIARISM}: Plagiarism is the act of taking the work created by another person or entity and presenting it as one's own for the purpose of personal gain or of obtaining academic credit. As per University policy, plagiarism includes the submission of or incorporation of the work of others without acknowledging its provenance or giving due credit according to established academic practices. This includes the submission of material that has been appropriated, bought, received as a gift, downloaded, or obtained by any other means. Students must not, unless they have been granted permission from all faculty members concerned, submit the same assignment or project for academic credit for different courses. 
+
+\noindent{\bf CHEATING}: The term cheating shall refer to the use of or obtaining of unauthorized information in order to obtain personal benefit or academic credit. 
+
+\noindent{\bf COLLUSION}: Collusion is the act of providing unauthorized assistance to one or more person or of not taking the appropriate precautions against doing so. 
+All violations of academic integrity will also be immediately reported to the concerned department.  
+
+You are encouraged to study together and to discuss information and concepts covered in lecture and the sections with other students. You can give "consulting" help to or receive "consulting" help from such students. However, this permissible cooperation should never involve one student having possession of a copy of all or part of work done by someone else, in the form of an e-mail, an e-mail attachment file, a diskette, or a hard copy. 
+
+Should copying occur, the student who copied work from another student and the student who gave material to be copied will both be in violation of the Student Code of Conduct. 
+
+During examinations, you must do your own work. Talking or discussion is not permitted during the examinations, nor may you compare papers, copy from others, or collaborate in any way. Any collaborative behavior during the examinations will result in failure of the exam, and may lead to failure of the course and University disciplinary action.
+
+Penalty for violation of this Code can also be extended to include failure of the course and University disciplinary action. 
+
+
+\section{Tentative Course schedule (From Spring 20)} 
+{\it May change to accommodate student needs}\\
+
+\noindent\begin{longtable}{|p{.15\textwidth}|p{.5\textwidth}|p{.28\textwidth}|}
+\hline
+Class dates & Topics to be discussed & Remarks\\\hline
+Week-1 \newline January 13-17 & 
+\begin{enumerate}[nolistsep]
+	\item Introduction
+	\item History and Components of a robot
+	\item Robot Mechanisms; Configuration; DoF
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} 
+& \newline P 1-2 \newline P 3; B 1\newline RMC 1.1; MR 2.0-2.2\\\hline
+Week-2 \newline January 20-24& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Workspace
+	\item Spatial Transformations in 2D
+	\item Spatial Transformations in 3D
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} 
+& \newline RMC 1.3\newline RMC 2.0-2.2.1 \newline C 2.2-2.7; RMC 2.2.2-2.3\\\hline
+Week-3 \newline January 27-31 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Parameterization of rotation	 
+	\item Forward Kinematics 
+	\item Denavit-Hartenberg Convention
+	\setcounter{index}{\value{enumi}}  
+\end{enumerate} & \newline C 2.8; RMC 2.5\newline RMC 3.1 \newline RMC 3.2\\\hline
+
+Week-4 \newline February 3-7& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}	
+	\item Denavit-Hartenberg Convention
+	\item Kashmir Day
+	\item Denavit-Hartenberg Convention
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} 
+& \newline RMC 3.2 \newline\\\hline
+
+Week-5 \newline February 10-14 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Inverse Kinematics
+	\item Kinematic Decoupling
+	\item Kinematic Decoupling	
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline RMC 3.3 \newline\newline Drop Date: February 14\\\hline
+
+Week-6 \newline February 17-21 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}	
+	\item Velocity Kinematics
+	\item Velocity Kinematics
+	\item Singularities
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline RMC 4.1-4.5\newline RMC 4.6, 4.8 \newline RMC 4.9\\\hline
+
+Week-7 \newline February 24-28 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Trajectory Generation
+	\item Trajectory Generation
+	\item \textit{Makeup class to be conducted later}
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline MR 9.0-9.3; C 7.0-7.6\\\hline
+
+Week-8 \newline March 17-20& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Review of Material
+	\item Review of Material
+	\item Midterm Exam
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline Mid-term Exams\\\hline
+
+\newline Week-9 \newline March 23-27 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}	
+	\item Pakistan Day
+	\item Actuation 		
+	\item Computer Vision; Perspective Projection\newline
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline\newline RAS 7; H 4.8\newline RVC 11.0-11.2; RMC 11.0-11.2\\\hline
+
+\newline Week-10 \newline March 30--April 3& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}		
+	\item Camera Calibration
+	\item Camera Calibration
+	\item Image Processing. Point Operations.
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline RVC 11.1.6-11.2\newline CVM 1.3.1 \newline RVC 12\\\hline
+
+\newline Week-11 \newline April 6-10 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}		
+	\item Image Processing. Spatial Operations. Morphology.
+	\item Feature Extraction. Segmentation
+	\item Segmentation. Representation
+	\setcounter{index}{\value{enumi}}
+\end{enumerate} & \newline\newline\newline RVC 13.0-13.1; RMC 11.3-11.5 \\\hline
+
+\newline Week-12 \newline April 13-17 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Feedback Control
+	
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+Week-13 \newline June 1-5 & 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}			
+	\item Review of Motion Control
+	\item Review of Motion Control
+	\item Inverse Dynamics	
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline \\\hline
+
+Week-14 \newline June 8-12& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}
+	\item Robust and Adaptive Control
+	\item Visual Servoing	
+	\item Motion Planning
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline   \\\hline
+
+Week-15 \newline June 15-19& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}			
+	\item Visibility Graphs, Generalized Voronoi Diagram
+	\item Cell Decompositions
+	\item Potential Functions
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline   \\\hline
+
+Week-16 \newline June 22-26& 
+\begin{enumerate}[nolistsep]
+	\setcounter{enumi}{\value{index}}		
+	\item Sampling-based path planning
+	\item Sampling-based path planning
+	\item Overview of Robotics
+	\setcounter{index}{\value{enumi}}
+\end{enumerate}& \newline   \\\hline
+\end{longtable}
+         
+
+
+\end{document}
